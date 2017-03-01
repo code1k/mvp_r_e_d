@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MvpRRD</string>
+    <string name="title_activity_laucher">LaucherActivity</string>
+</resources>
