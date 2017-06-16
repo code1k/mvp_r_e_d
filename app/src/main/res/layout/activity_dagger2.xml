@@ -11,9 +11,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zb.mvprrd.dagger2demo.Dagger2Activity">
 
-    <android.support.v7.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="内容"/>

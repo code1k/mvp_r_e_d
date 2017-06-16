@@ -19,18 +19,18 @@ import com.zb.mvprrd.dagger2demo2.api.ApiModule;
  ************************************************************************************************/
 
 public class Dagger22MyApplication extends Application {
-    private AppComponent appComponent;
+    private App2Component appComponent;
     private static Dagger22MyApplication myApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
         myApplication = this;
-        appComponent = DaggerAppComponent.builder()
+        appComponent = DaggerApp2Component.builder()
                 .apiModule(new ApiModule()).build();
     }
 
-    public AppComponent getAppComponent() {
+    public App2Component getAppComponent() {
         return appComponent;
     }
 

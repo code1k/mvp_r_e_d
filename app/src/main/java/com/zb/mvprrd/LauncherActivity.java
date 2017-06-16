@@ -43,8 +43,9 @@ public class LauncherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-        addActivityInfos();
         ButterKnife.bind(this);
+        addActivityInfos();
+        rlv = (RecyclerView) findViewById(R.id.rlv);
         rlv.setLayoutManager(new LinearLayoutManager(this));
         MyAdapter myAdapter = new MyAdapter();
         myAdapter.setOnItemClickListener(new OnItemClickListener() {

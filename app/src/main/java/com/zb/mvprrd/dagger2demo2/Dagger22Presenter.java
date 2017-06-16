@@ -1,6 +1,5 @@
 package com.zb.mvprrd.dagger2demo2;
 
-import com.zb.mvprrd.dagger2demo2.api.ApiService;
 import com.zb.mvprrd.dagger2demo2.base.RxPresenter;
 import com.zb.mvprrd.dagger2demo2.bean.ApiResult;
 import com.zb.mvprrd.dagger2demo2.bean.UserBean;
@@ -24,11 +23,10 @@ import rx.schedulers.Schedulers;
  * 修改人：
  * 修改内容：
  ************************************************************************************************/
-
 public class Dagger22Presenter extends RxPresenter<Dagger22Contract.View> implements Dagger22Contract.Presenter<Dagger22Contract.View> {
-
     @Inject
-    ApiService service;
+    public Dagger22Presenter() {
+    }
 
     @Override
     public void login(String userName, String pwd, String appType) {

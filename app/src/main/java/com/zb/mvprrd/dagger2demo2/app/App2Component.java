@@ -1,7 +1,7 @@
 package com.zb.mvprrd.dagger2demo2.app;
 
+import com.zb.mvprrd.dagger2demo2.Dagger22Activity;
 import com.zb.mvprrd.dagger2demo2.api.ApiModule;
-import com.zb.mvprrd.dagger2demo2.api.ApiService;
 
 import javax.inject.Singleton;
 
@@ -9,7 +9,7 @@ import dagger.Component;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
- * 文件名称：AppComponent.java
+ * 文件名称：App2Component.java
  * 内容摘要：
  * 当前版本：V1.0
  * 作   者： 翟彬
@@ -23,8 +23,6 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {ApiModule.class})
-public interface AppComponent {
-    ApiService getApi();
-
-//    Dagger22Activity inject(Dagger22Activity dagger22Activity);
+public interface App2Component {
+    Dagger22Activity inject(Dagger22Activity dagger22Activity);
 }

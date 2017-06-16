@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.zb.mvprrd.R;
+import com.zb.mvprrd.dagger2demo2.app.Dagger22MyApplication;
 import com.zb.mvprrd.dagger2demo2.base.BaseContract;
 
 import javax.inject.Inject;
@@ -33,6 +34,7 @@ public class Dagger22Activity extends AppCompatActivity implements BaseContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrofit);
         ButterKnife.bind(this);
+        ((Dagger22MyApplication)getApplication()).getAppComponent().inject(this);
         dagger22Presenter.attachView(this);
         btUploadData.setVisibility(View.GONE);
     }

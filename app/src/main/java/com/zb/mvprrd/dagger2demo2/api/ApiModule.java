@@ -4,6 +4,8 @@ import com.zb.mvprrd.dagger2demo2.app.Dagger22MyApplication;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -29,6 +31,7 @@ public class ApiModule {
         return Dagger22MyApplication.getApp();
     }
 
+    @Singleton
     @Provides
     public OkHttpClient providesOkhttpClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -45,7 +48,7 @@ public class ApiModule {
     }
 
     @Provides
-    protected ApiService prodivesApi() {
+    public ApiService prodivesApi() {
         return Api2.getInstance();
     }
 }

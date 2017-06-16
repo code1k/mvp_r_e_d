@@ -1,5 +1,9 @@
 package com.zb.mvprrd.dagger2demo2.base;
 
+import com.zb.mvprrd.dagger2demo2.api.ApiService;
+
+import javax.inject.Inject;
+
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -20,6 +24,8 @@ import rx.subscriptions.CompositeSubscription;
 public class RxPresenter<T extends BaseContract.BaseView> implements BaseContract.BasePresenter<T> {
     protected T view;
 
+    @Inject
+    protected ApiService service;
     protected CompositeSubscription subscription;
 
     protected void unSubscribe() {
