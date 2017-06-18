@@ -6,9 +6,11 @@ import com.zb.mvprrd.dagger2demo2.bean.UserBean;
 
 import javax.inject.Inject;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
@@ -30,14 +32,29 @@ public class Dagger22Presenter extends RxPresenter<Dagger22Contract.View> implem
 
     @Override
     public void login(String userName, String pwd, String appType) {
-        addSubscribe(service.login(userName, pwd, appType)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ApiResult<UserBean>>() {
+        service.login(userName, pwd, appType)
+                .observeOn(AndroidSchedulers.mainThread())//指定 subscribe() 事件发送发生在 IO 线程
+                .subscribeOn(Schedulers.io())//指定 Subscriber 的回调处理发生在主线程
+                .subscribe(new Observer<ApiResult<UserBean>>() {
                     @Override
-                    public void call(ApiResult<UserBean> userBeanApiResult) {
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull ApiResult<UserBean> userBeanApiResult) {
                         view.showUserInfo(userBeanApiResult.getT().toString());
                     }
-                }));
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

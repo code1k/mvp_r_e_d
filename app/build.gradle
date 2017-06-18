@@ -15,6 +15,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean","ISDEBUG","false")
+        }
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean","ISDEBUG","true")
         }
     }
 }
@@ -40,14 +46,14 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
 
     //retrofit2的配置
-    compile 'com.squareup.retrofit2:adapter-rxjava:+'
-    compile 'com.squareup.retrofit2:retrofit:+'
-    compile 'com.squareup.retrofit2:converter-gson:+'
-    compile 'com.squareup.retrofit2:adapter-rxjava:+'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     //网络日志的配置
-    compile 'com.squareup.okhttp3:logging-interceptor:+'
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
-    compile 'io.reactivex:rxjava:+'
-    compile 'io.reactivex:rxandroid:+'
-    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 }

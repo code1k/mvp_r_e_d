@@ -3,11 +3,11 @@ package com.zb.mvprrd.dagger2demo2.api;
 import com.zb.mvprrd.dagger2demo2.bean.ApiResult;
 import com.zb.mvprrd.dagger2demo2.bean.UserBean;
 
+import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
@@ -28,7 +28,7 @@ public class Api {
 
     private Api(OkHttpClient okHttpClient) {
         Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .baseUrl("http://test.leeonedu.com/")

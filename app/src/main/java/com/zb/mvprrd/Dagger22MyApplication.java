@@ -1,8 +1,10 @@
-package com.zb.mvprrd.dagger2demo2.app;
+package com.zb.mvprrd;
 
 import android.app.Application;
 
 import com.zb.mvprrd.dagger2demo2.api.ApiModule;
+import com.zb.mvprrd.dagger2demo2.app.App2Component;
+import com.zb.mvprrd.dagger2demo2.app.DaggerApp2Component;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
@@ -28,6 +30,7 @@ public class Dagger22MyApplication extends Application {
         myApplication = this;
         appComponent = DaggerApp2Component.builder()
                 .apiModule(new ApiModule()).build();
+//        BuildConfig.ISDEBUG
     }
 
     public App2Component getAppComponent() {

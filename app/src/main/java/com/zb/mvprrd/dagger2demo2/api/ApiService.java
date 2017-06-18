@@ -3,10 +3,10 @@ package com.zb.mvprrd.dagger2demo2.api;
 import com.zb.mvprrd.dagger2demo2.bean.ApiResult;
 import com.zb.mvprrd.dagger2demo2.bean.UserBean;
 
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import rx.Observable;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司

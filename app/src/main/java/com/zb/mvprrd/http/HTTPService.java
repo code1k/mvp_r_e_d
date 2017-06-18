@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.functions.Action1;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
@@ -42,7 +43,7 @@ public class HTTPService {
         OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS).addInterceptor(interceptor).build();
         builder = new Retrofit.Builder().client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
     }
 
     private static final String TAG = "HTTPService.class";
@@ -120,7 +121,7 @@ public class HTTPService {
             OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS).addInterceptor(interceptor).build();
             retrofit = new Retrofit.Builder().client(httpClient)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .baseUrl(BASE_URL)
                     .build();
         }
@@ -133,9 +134,9 @@ public class HTTPService {
         builder.baseUrl(BASE_URL).build();
         retrofit.create(HttpApi.class)
                 .getTop(0, 1)
-                .subscribe(new Action1<HttpResult<List<MovieBean>>>() {
+                .subscribe(new Consumer<HttpResult<List<MovieBean>>>() {
                     @Override
-                    public void call(HttpResult<List<MovieBean>> listHttpResult) {
+                    public void accept(@NonNull HttpResult<List<MovieBean>> listHttpResult) throws Exception {
 
                     }
                 });

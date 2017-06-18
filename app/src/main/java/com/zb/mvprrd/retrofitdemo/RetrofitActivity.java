@@ -13,8 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.zb.mvprrd.R;
+
+import org.reactivestreams.Subscription;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +26,8 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -35,8 +39,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Subscription;
-import rx.functions.Action1;
 
 public class RetrofitActivity extends AppCompatActivity implements ViewClick {
 
@@ -75,9 +77,9 @@ public class RetrofitActivity extends AppCompatActivity implements ViewClick {
             for (final View v : views) {
                 if (v != null) {
                     RxView.clicks(v).throttleFirst(2, TimeUnit.SECONDS)
-                            .subscribe(new Action1<Void>() {
+                            .subscribe(new Consumer<Object>() {
                                 @Override
-                                public void call(Void aVoid) {
+                                public void accept(@NonNull Object o) throws Exception {
                                     c.click(v);
                                 }
                             });
@@ -258,8 +260,8 @@ public class RetrofitActivity extends AppCompatActivity implements ViewClick {
     @Override
     protected void onDestroy() {
         for (Subscription s : rx) {
-            if (s != null && !s.isUnsubscribed()) {
-                s.unsubscribe();
+            if (s != null) {
+                s.cancel();
             }
         }
         super.onDestroy();

@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.zb.mvprrd.R;
-import com.zb.mvprrd.dagger2demo2.app.Dagger22MyApplication;
+import com.zb.mvprrd.Dagger22MyApplication;
 import com.zb.mvprrd.dagger2demo2.base.BaseContract;
 
 import javax.inject.Inject;

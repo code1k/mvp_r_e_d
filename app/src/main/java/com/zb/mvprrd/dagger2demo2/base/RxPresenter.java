@@ -4,8 +4,6 @@ import com.zb.mvprrd.dagger2demo2.api.ApiService;
 
 import javax.inject.Inject;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
@@ -26,18 +24,6 @@ public class RxPresenter<T extends BaseContract.BaseView> implements BaseContrac
 
     @Inject
     protected ApiService service;
-    protected CompositeSubscription subscription;
-
-    protected void unSubscribe() {
-        subscription.unsubscribe();
-    }
-
-    protected void addSubscribe(Subscription s) {
-        if (subscription == null) {
-            subscription = new CompositeSubscription();
-        }
-        subscription.add(s);
-    }
 
     @Override
     public void attachView(T view) {

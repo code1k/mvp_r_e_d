@@ -1,6 +1,6 @@
 package com.zb.mvprrd.dagger2demo2.api;
 
-import com.zb.mvprrd.dagger2demo2.app.Dagger22MyApplication;
+import com.zb.mvprrd.Dagger22MyApplication;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,15 +1,14 @@
 package com.zb.mvprrd.mvpDemo;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /*************************************************************************************************
  * 版权所有 (C)2016,  四川乐望云教育科技有限公司
@@ -38,23 +37,24 @@ public class MVPPresenter implements MVPActivityContract.MVPActivityPresenter {
         new Retrofit.Builder()
                 .baseUrl("https://api.douban.com/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor().setLevel
+                        (HttpLoggingInterceptor.Level.BODY)).build())
                 .build().create(MovieApi.class)
                 .getTop(0, 10)
                 .subscribeOn(Schedulers.io())
                 .serialize()
-                .flatMap(new Func1<MovieFullBean, Observable<MovieFullBean.SubjectsBean>>() {
-                    @Override
-                    public Observable<MovieFullBean.SubjectsBean> call(MovieFullBean movieFullBean) {
-                        return Observable.from(movieFullBean.getSubjects());
-                    }
-                })
+//                .flatMap(new Function<MovieFullBean, Observable<MovieFullBean.SubjectsBean>>() {
+//                    @Override
+//                    public Observable<MovieFullBean.SubjectsBean> apply(@NonNull MovieFullBean movieFullBean) throws Exception {
+//                        return Observable.just(movieFullBean.getSubjects());
+//                    }
+//                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<MovieFullBean.SubjectsBean>() {
+                .subscribe(new Consumer<MovieFullBean>() {
                     @Override
-                    public void call(MovieFullBean.SubjectsBean subjectsBean) {
-                        view.upUI(subjectsBean.toString());
+                    public void accept(@NonNull MovieFullBean movieFullBean) throws Exception {
+                        view.upUI(movieFullBean.toString());
                     }
                 });
     }

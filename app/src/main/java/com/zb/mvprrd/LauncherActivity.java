@@ -17,6 +17,7 @@ import com.zb.mvprrd.eventbus.EventBusActivity;
 import com.zb.mvprrd.mvpDemo.MVPDemoActivity;
 import com.zb.mvprrd.retrofitdemo.RetrofitActivity;
 import com.zb.mvprrd.rxjavaretrofitdemo.RxJavaRetrofitActivity;
+import com.zb.mvprrd.xiaomi.XiaomiActivity;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,7 @@ public class LauncherActivity extends AppCompatActivity {
     private ArrayList<ActivityInfo> activityInfos = new ArrayList<>();
 
     private void addActivityInfos() {
+        activityInfos.add(new ActivityInfo("修改支付宝小米步数", XiaomiActivity.class));
         activityInfos.add(new ActivityInfo("EventBus_Demo", EventBusActivity.class));
         activityInfos.add(new ActivityInfo("Retrofit_Demo", RetrofitActivity.class));
         activityInfos.add(new ActivityInfo("RxJavaRetrofit_Demo", RxJavaRetrofitActivity.class));

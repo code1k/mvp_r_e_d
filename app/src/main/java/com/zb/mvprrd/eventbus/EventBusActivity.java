@@ -1,5 +1,7 @@
 package com.zb.mvprrd.eventbus;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -28,6 +30,13 @@ public class EventBusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event_bus);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+        ObjectAnimator animator = ObjectAnimator.ofInt(this,"aaa",0,100);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                animation.getAnimatedValue("aaa");
+            }
+        });
     }
 
     @OnClick(R.id.bt_send_event_bus)

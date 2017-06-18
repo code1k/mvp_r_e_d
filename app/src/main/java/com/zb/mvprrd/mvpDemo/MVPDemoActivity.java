@@ -27,6 +27,7 @@ public class MVPDemoActivity extends AppCompatActivity implements MVPActivityCon
         ButterKnife.bind(this);
         presenter = new MVPPresenter();
         presenter.attachView(this);
+//        PrinterInfo
     }
 
     @OnClick(R.id.bt_get_data)
